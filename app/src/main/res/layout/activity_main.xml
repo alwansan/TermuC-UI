@@ -1,52 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-	<include
-		layout="@layout/key_panel"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_above="@id/subcontainer"
-		android:layout_alignWithParentIfMissing="true"/>
+    <!-- Main Content -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface">
 
-	<include
-		layout="@layout/editfrag"/>
+        <!-- Top App Bar -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp"
+            app:liftOnScroll="true">
 
-	<ImageButton
-		android:src="@android:drawable/ic_menu_more"
-		android:tooltipText="@string/browse_files"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentRight="true"
-		android:layout_marginBottom="12dp"
-		android:layout_marginRight="12dp"
-		android:id="@id/show_list"
-		android:onClick="showList"
-		android:layout_alignParentBottom="true"/>
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                app:navigationIcon="@drawable/ic_menu"
+                app:navigationIconTint="?attr/colorOnSurface"
+                app:title=""
+                app:titleTextColor="?attr/colorOnSurface">
 
-	<LinearLayout
-		android:id="@id/subcontainer"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:layout_alignParentBottom="true"
-		android:visibility="gone"
-		android:background="?android:attr/colorBackground">
+                <!-- File Tabs ScrollView -->
+                <HorizontalScrollView
+                    android:id="@+id/tabs_scroll"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scrollbars="none"
+                    android:fillViewport="true">
 
-		<View
-			android:background="?android:attr/textColorLink"
-			android:layout_width="match_parent"
-			android:layout_height="2dp"/>
+                    <LinearLayout
+                        android:id="@+id/tabs_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp" />
+                </HorizontalScrollView>
 
-		<ListView
-			android:layout_width="match_parent"
-			android:layout_height="300dp"
-			android:fastScrollEnabled="true"
-			android:id="@id/file_list"/>
+            </com.google.android.material.appbar.MaterialToolbar>
 
-	</LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-</RelativeLayout>
+        <!-- Editor Area -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <!-- Code Editor -->
+            <cn.rbc.termuc.view.CodeEditorView
+                android:id="@+id/code_editor"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/extra_keys_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Diagnostics Banner -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/diagnostics_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="?attr/colorErrorContainer"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/diagnostics_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:textColor="?attr/colorOnErrorContainer"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/jetbrains_mono" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Extra Keys Bar -->
+            <HorizontalScrollView
+                android:id="@+id/extra_keys_bar"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:background="?attr/colorSurfaceVariant"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/extra_keys_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:gravity="center_vertical" />
+            </HorizontalScrollView>
+
+            <!-- Bottom Action Bar -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bottom_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
+
+                    <!-- Run Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_run"
+                        style="@style/Widget.Material3.Button.Icon"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:text="@string/run"
+                        app:icon="@drawable/ic_play"
+                        app:iconGravity="start"
+                        app:backgroundTint="@color/colorSuccess"
+                        android:textColor="@android:color/white" />
+
+                    <!-- Build Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_build"
+                        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:text="@string/build"
+                        app:icon="@drawable/ic_build" />
+
+                    <!-- Terminal Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_terminal"
+                        style="@style/Widget.Material3.Button.TonalButton.Icon"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:text="@string/terminal"
+                        app:icon="@drawable/ic_terminal" />
+
+                    <!-- More Options -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_more"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="4dp"
+                        app:icon="@drawable/ic_more_vert" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- FAB for new file -->
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_new_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="80dp"
+            android:text="@string/new_file"
+            app:icon="@drawable/ic_add"
+            app:layout_anchor="@id/bottom_bar"
+            app:layout_anchorGravity="top|end"
+            android:visibility="gone" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
