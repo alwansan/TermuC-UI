@@ -185,4 +185,8 @@
         <item>Makefile</item>
         <item>CMake</item>
     </string-array>
+    <string name="terminal">Terminal</string>
+    <string name="new_file">New File</string>
+    <string name="close_tab">Close</string>
+    <string name="no_project">No project open</string>
 </resources>
