@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <!-- Primary Colors - Deep Purple/Indigo Modern -->
+    <color name="colorPrimary">#6650A4</color>
+    <color name="colorPrimaryVariant">#4F378B</color>
+    <color name="colorPrimaryContainer">#EADDFF</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnPrimaryContainer">#21005D</color>
+
+    <!-- Secondary -->
+    <color name="colorSecondary">#625B71</color>
+    <color name="colorSecondaryContainer">#E8DEF8</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+
+    <!-- Tertiary -->
+    <color name="colorTertiary">#7D5260</color>
+    <color name="colorTertiaryContainer">#FFD8E4</color>
+
+    <!-- Background -->
+    <color name="colorBackground">#FFFBFE</color>
+    <color name="colorSurface">#FFFBFE</color>
+    <color name="colorSurfaceVariant">#E7E0EC</color>
+    <color name="colorOnBackground">#1C1B1F</color>
+    <color name="colorOnSurface">#1C1B1F</color>
+    <color name="colorOnSurfaceVariant">#49454F</color>
+
+    <!-- Dark Theme -->
+    <color name="colorBackgroundDark">#1C1B1F</color>
+    <color name="colorSurfaceDark">#1C1B1F</color>
+    <color name="colorSurfaceVariantDark">#49454F</color>
+    <color name="colorPrimaryDark">#D0BCFF</color>
+    <color name="colorPrimaryContainerDark">#4F378B</color>
+    <color name="colorOnPrimaryDark">#381E72</color>
+    <color name="colorOnBackgroundDark">#E6E1E5</color>
+
+    <!-- Editor Colors -->
+    <color name="colorEditorBackground">#1E1E2E</color>
+    <color name="colorEditorText">#CDD6F4</color>
+    <color name="colorEditorLineNumber">#585B70</color>
+    <color name="colorEditorSelection">#313244</color>
+    <color name="colorEditorCurrentLine">#181825</color>
+
+    <!-- Syntax Colors (Catppuccin Mocha) -->
+    <color name="syntaxKeyword">#CBA6F7</color>
+    <color name="syntaxString">#A6E3A1</color>
+    <color name="syntaxComment">#6C7086</color>
+    <color name="syntaxNumber">#FAB387</color>
+    <color name="syntaxFunction">#89B4FA</color>
+    <color name="syntaxType">#F38BA8</color>
+
+    <!-- Status Colors -->
+    <color name="colorError">#B3261E</color>
+    <color name="colorWarning">#F59E0B</color>
+    <color name="colorSuccess">#10B981</color>
+
+    <!-- Divider -->
+    <color name="colorDivider">#CAC4D0</color>
+    <color name="colorDividerDark">#49454F</color>
 </resources>
