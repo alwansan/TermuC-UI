@@ -37,7 +37,7 @@
             android:maxLines="1"
             android:ellipsize="middle"
             android:textSize="13sp"
-            android:fontFamily="@font/jetbrains_mono"
+            android:typeface="monospace"
             android:textColor="?attr/colorOnSurface" />
 
         <!-- Modified dot -->

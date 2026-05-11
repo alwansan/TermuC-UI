@@ -20,18 +20,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            app:elevation="0dp"
-            app:liftOnScroll="true">
+            app:elevation="0dp">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
-                app:navigationIcon="@drawable/ic_menu"
+                app:navigationIcon="@drawable/ic_folder_24"
                 app:navigationIconTint="?attr/colorOnSurface"
-                app:title=""
-                app:titleTextColor="?attr/colorOnSurface">
+                app:title="">
 
                 <!-- File Tabs ScrollView -->
                 <HorizontalScrollView
@@ -61,9 +59,9 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <!-- Code Editor -->
-            <cn.rbc.termuc.view.CodeEditorView
-                android:id="@+id/code_editor"
+            <!-- Code Editor placeholder - filled programmatically -->
+            <FrameLayout
+                android:id="@+id/code_editor_container"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -92,7 +90,7 @@
                     android:padding="12dp"
                     android:textColor="?attr/colorOnErrorContainer"
                     android:textSize="12sp"
-                    android:fontFamily="@font/jetbrains_mono" />
+                    android:typeface="monospace" />
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Extra Keys Bar -->
@@ -186,19 +184,6 @@
             </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- FAB for new file -->
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/fab_new_file"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="80dp"
-            android:text="@string/new_file"
-            app:icon="@drawable/ic_add"
-            app:layout_anchor="@id/bottom_bar"
-            app:layout_anchorGravity="top|end"
-            android:visibility="gone" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
